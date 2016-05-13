@@ -1,7 +1,6 @@
 from mrjob.job import MRJob
 from mrjob.step import MRStep
-import re
-
+ 
 class MostPopularHero(MRJob):
   """Mappper-Reducer for finding the most popular Hero"""
 
@@ -25,7 +24,6 @@ class MostPopularHero(MRJob):
     self.heroNames = {}
     with open("Marvel-Names.txt") as file:
       for line in file:
-        #re.findall('"([^"]*)"', line)
         fields = line.split('"')
         self.heroNames[int(fields[0])] = unicode(fields[1], errors='ignore')
 
