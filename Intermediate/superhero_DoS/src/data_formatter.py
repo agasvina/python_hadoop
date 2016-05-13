@@ -4,7 +4,7 @@
 #Usage: data_formatter.py heroID
 import sys 
 
-with open("./resources/bfs-0.txt", 'w') as out:
+with open("./resources/bfs-0", 'w') as out:
   with open("./dataset/Marvel-graph.txt") as f:
     for line in f:
       fields = line.split()

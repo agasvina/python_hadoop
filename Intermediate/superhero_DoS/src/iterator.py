@@ -1,6 +1,8 @@
 from mrjob.job import MRJob
 from mrjob.protocol import RawValueProtocol
 from node import Node
+import result_dir
+import os
 
 PROCESS = "PROCESS"
 UNVISITED = "UNVISITED"
@@ -29,6 +31,11 @@ class MRIterator(MRJob):
         if(self.options.target== connection):
           counterName = ("Target ID " + connection + " is connected " + str(adjNode.distance))
           self.increment_counter('Degrees of Separation', counterName, 1)
+          if not os.path.exists(result_dir.resultDir+'/report'):
+              os.makedirs(result_dir.resultDir+'/report')
+          result = open(result_dir.resultDir+'/report/result.txt','w')
+          result.write(counterName)
+          result.close()
 
         yield connection, adjNode.getLine()
       node.status = VISITED
